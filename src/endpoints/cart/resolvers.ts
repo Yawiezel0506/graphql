@@ -3,22 +3,21 @@ import { AddToCart, Cart, ProductToDelete, UpdateQuantity } from "../../interfac
 
 type Result = Cart | null | string;
 
-export const resolvers = {
+export const cartResolvers = {
   Query: {
-    cart: async (_: any, { id }: { id: string }) => {
+    cart: async (_: any, args: {id: string}) => {
+        const {id} = args;
         const userId: string | null = id
         if (!userId) {
           return "no user specified";
         }
         const cart: Result = await cartService.getCart(userId);
-    
         if (!cart) {
           return  "cart of this user not found";
         }
         return cart  
     },
   },
-  
   Mutation: {
     addToCart: async (_: any, { input } : { input: AddToCart } ) => {
       const user = input.userId;

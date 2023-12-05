@@ -1,52 +1,27 @@
 import { gql } from 'apollo-server-express';
+import { cartMutation, cartQuery, cartTypes } from '../endpoints/cart/schemas';
+import { cartResolvers } from '../endpoints/cart/resolvers';
 
 
 export const typeDefs = gql`
-  type ProductCart {
-    productId: String!
-    quantity: Int!
-    description: String!
-    price: Int!
-  }
 
-  type Cart {
-    products: [ProductCart]!
-    userId: String
-  }
-
-  input ProductInput {
-    productId: String!
-    quantity: Int!
-    description: String!
-    price: Int!
-  }
-  
-  input AddToCartInput {
-    userId: String!
-    products: [ProductInput]!
-  }
-  
-  input UpdateQuantityInput {
-    userId: String!
-    productId: String!
-    quantity: Int!
-  }
-  
-  input DeleteProductInput {
-    userId: String!
-    productId: String!
-  }
+  ${cartTypes}
   
   type Query {
-    cart(id: ID!): Cart!
-    carts: [Cart]!
+    ${cartQuery}
   }
 
   type Mutation {
-    addToCart(input: AddToCartInput): Cart 
-    updateQuantity(input: UpdateQuantityInput): Cart  
-    deleteCart(id: ID!): Cart 
-    deleteProduct(input: DeleteProductInput): String
+    ${cartMutation}
   }
 `;
+
+export const resolvers = {
+  Query: {
+    ...cartResolvers.Query
+  },
+  Mutation: {
+    ...cartResolvers.Mutation
+  }
+}
 
