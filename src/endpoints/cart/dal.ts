@@ -90,16 +90,18 @@ const deleteProductInCart = async (
   productToDelete: ProductToDelete
 ): CollectionResult => {
   try {
-
     let cart: Cart | null = await findCart(productToDelete.userId);
+    
     if (!cart) return 'The cart not found';
-
-
+    
     const indexOfProductToDelete = cart.products.findIndex(
       (product) => product.productId === productToDelete.productId
     );
+    
+    if (indexOfProductToDelete === -1) return "product not in cart"
 
     cart.products.splice(indexOfProductToDelete, 1);
+    await cart.save();
     return "product deleted successfully";
   } catch (error) {
     console.error("Error delete product:", error);

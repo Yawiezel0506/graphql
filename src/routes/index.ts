@@ -9,7 +9,7 @@ import bannersRoute from "../endpoints/banners/routes"
 const route = express.Router();
 
 route.use("/users", usersRoute);
-route.use("/cart", cartRoute);
+// route.use("/cart", cartRoute);
 route.use("/products", productsRouter);
 route.use("/categories", categoriesRoute)
 route.use("/orders", ordersRoute)

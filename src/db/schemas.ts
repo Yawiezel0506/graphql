@@ -3,9 +3,11 @@ import { ProductCart, Cart } from '../interfaces/cart';
 
 import mongoose from "mongoose";
 
-export const productCartSchema: Schema<ProductCart> = new Schema<ProductCart>({
+const productCartSchema: Schema<ProductCart> = new Schema<ProductCart>({
   productId: { type: String, required: true },
   quantity: { type: Number, required: true },
+  price: { type: Number, required: true},
+  description: { type: String, required: true}
 });
 
 const cartSchema: Schema<Cart> = new Schema<Cart>({

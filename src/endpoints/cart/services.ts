@@ -50,6 +50,7 @@ const deleteCart = async (userId: string) => {
   };
   
   const deleteProductInCart = async (productToDelete: ProductToDelete) => {
+    
     try {
         const cartToDelete = await cartDal.deleteProductInCart(productToDelete)
         if (!cartToDelete) return 'cart of this user not found' ;
@@ -59,6 +60,7 @@ const deleteCart = async (userId: string) => {
       return error
     }
   };
+
   const cartService = {
     getCart,
     updateQuantity,

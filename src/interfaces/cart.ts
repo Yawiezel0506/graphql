@@ -15,8 +15,10 @@ interface AddToCart {
 }
 
 interface ProductCart {
-    productId: string
-    quantity: number
+    productId: string;
+    quantity: number;
+    description: string;
+    price: number;
 }
   
 interface Cart {

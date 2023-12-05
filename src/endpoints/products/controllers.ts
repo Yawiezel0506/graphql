@@ -2,6 +2,9 @@ import { Request, Response } from "express";
 import productService from "./services";
 import { Product } from "../../interfaces/products";
 
+
+
+
 const getAllProducts = async (req: Request, res: Response) => {
   try {
     const query = req.query;
