@@ -8,4 +8,4 @@ route.put("/:id", categoriesController.setClick)
 route.post("/", categoriesController.createCategory)
 route.post("/aa", categoriesController.createCategories)
 
-export default route
+export default route  
