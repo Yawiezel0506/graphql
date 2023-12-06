@@ -16,18 +16,6 @@ const httpServer = http.createServer(app);
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  formatError: (formattedError, error) => {
-    if (
-      formattedError.extensions?.code ===
-      ApolloServerErrorCode.GRAPHQL_VALIDATION_FAILED
-    ) {
-      return {
-        ...formattedError,
-        message: "Your query doesn't match the schema. Try double-checking it!",
-      };
-    }
-    return formattedError;
-  },
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 

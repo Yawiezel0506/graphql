@@ -4,11 +4,13 @@ import { Product } from "../../interfaces/products";
 const getAllProducts = async (query: Record<string, unknown>) => {
   try {
     const result = await productsDal.getAllProducts();
+    
     let products: Product[] = [];
+    
     if (Object.keys(query).length) {
       for (let key in query) {
         if (result.length) {
-          products = result.filter((product: Product) => {
+          products = result.filter((product: Product) => {            
             return product[key] == query[key];
           });
         }

@@ -12,8 +12,8 @@ export const cartResolvers = {
           return "no user specified";
         }
         const cart: Result = await cartService.getCart(userId);
-        if (!cart) {
-          return  "cart of this user not found";
+        if (cart === "No Cart found") {
+          throw new Error("cart of this user not found");
         }
         return cart  
     },

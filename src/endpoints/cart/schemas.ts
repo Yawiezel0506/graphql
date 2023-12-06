@@ -13,7 +13,7 @@ export const cartTypes = gql`
     userId: String
   }
 
-  input ProductInput {
+  input ProductCartInput {
     productId: String!
     quantity: Int!
     description: String!
@@ -22,7 +22,7 @@ export const cartTypes = gql`
 
   input AddToCartInput {
     userId: String!
-    products: [ProductInput]!
+    products: [ProductCartInput]!
   }
 
   input UpdateQuantityInput {

@@ -15,3 +15,13 @@ export interface Product {
     value: number | string;
   }
   
+  export interface ProductInput {
+    id?: number;
+    title?: string;
+    price?: number;
+    description?: string;
+    category?: string;
+    attribute?: Attributes[];
+    count?: number;
+    quantity?: number;
+  }
