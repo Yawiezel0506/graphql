@@ -1,5 +1,5 @@
 import { UserRegisterModel } from "../../db/users";
-import { UserLogin } from "../../interfaces/users";
+import { UserLogin, UserRegisterInput } from "../../interfaces/users";
 import { comparePassword, generateUserPassword } from "../../utils/bcrypt";
 import { registerSchema, loginSchema } from "../../utils/joy";
 
@@ -30,25 +30,25 @@ const login = async (user: UserLogin) => {
       return;
     }
 
-    return { user: existingUser };
+    return existingUser;
   } catch (error) {
     return error;
   }
 };
 
-const register = async (user: UserLogin) => {
+const register = async (user: UserRegisterInput) => {
   try {
     console.log(user);
     const { error } = registerSchema.validate(user);
     if (error) {
       console.log(error.details[0].message);
-      return "error";
+      return "error1";
     }
 
     const exists = await UserRegisterModel.findOne({ email: user.email });
     if (exists) {
       console.log("User with this email already exists!");
-      return "error";
+      return "error2";
     }
 
     const hashedPassword = {
@@ -58,7 +58,7 @@ const register = async (user: UserLogin) => {
 
     const newUser = await UserRegisterModel.create(hashedPassword);
 
-    return { user: newUser };
+    return newUser;
   } catch (error) {
     return error;
   }
@@ -69,25 +69,22 @@ const edit = async (users: UserLogin[]) => {
   try {
     console.log(users);
 
-    const userExists:UserLogin | null = await UserRegisterModel.findOne({
+    const userExists: UserLogin | null = await UserRegisterModel.findOne({
       email: oldUser.email,
     });
-    
 
     if (userExists) {
-      newUser.password = userExists.password
+      newUser.password = userExists.password;
     }
-    
+
     if (!userExists) {
       console.log("User with this email does not exist!");
       return "error";
     }
 
-   
-
     await UserRegisterModel.updateOne({ email: oldUser.email }, newUser);
 
-    return { user: newUser };
+    return newUser;
   } catch (error) {
     return error;
   }
