@@ -29,7 +29,7 @@ server.start().then(() => {
   );
 });
 
-httpServer.listen({ port: 4500 }, async () => {
+httpServer.listen({ port: 4500, host: '0.0.0.0' }, async () => {
   await connectToDatabase();
   console.log(`🚀 Server ready at http://localhost:4500/graphql`);
 });

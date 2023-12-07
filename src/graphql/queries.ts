@@ -28,7 +28,6 @@ export const typeDefs = gql`
     ${usersQuery}
     ${ordersQuery}
     ${bannersQuery}
-
   }
 
   type Mutation {
