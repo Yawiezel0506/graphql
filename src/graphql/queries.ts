@@ -10,6 +10,7 @@ import { UsersResolvers } from "../endpoints/users/resolvers";
 import { ordersMutation, ordersQuery, ordersTypes } from "../endpoints/orders/schemas";
 import { ordersResolvers } from "../endpoints/orders/resolvers";
 import { bannersMutation, bannersQuery, bannersTypes } from "../endpoints/banners/schemas";
+import { bannersResolvers } from "../endpoints/banners/resolvers";
 
 export const typeDefs = gql`
 
@@ -47,6 +48,7 @@ export const resolvers = {
     ...categoryResolvers.Query,
     ...UsersResolvers.Query,
     ...ordersResolvers.Query,
+    ...bannersResolvers.Query
   },
   Mutation: {
     ...cartResolvers.Mutation,
@@ -54,5 +56,6 @@ export const resolvers = {
     ...categoryResolvers.Mutation,
     ...UsersResolvers.Mutation,
     ...ordersResolvers.Mutation,
+    ...bannersResolvers.Mutation
   },
 };

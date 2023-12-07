@@ -20,8 +20,8 @@ export const bannersTypes = gql`
 `;
 
 export const bannersQuery = `#graphql
-    getBanners: Banner
-    getBanner(Category: String): [Banner]
+    getBanners: [Banner]
+    getBanner(Category: String): Banner
 `;
 
 export const bannersMutation = `#graphql

@@ -17,7 +17,9 @@ const getByCategory = async (category: string) => {
 
 const getAllBanners = async () => {
   try {
+    console.log(BANNERS_SERVER);
     const resp = await axios.get(`${BANNERS_SERVER}/banners/`);
+    console.log(resp.data);
     return resp.data;
   } catch (error) {
     console.log(error);
