@@ -7,7 +7,9 @@ import { productsTypes, productsQuery, productsMutation } from '../endpoints/pro
 import { productResolvers } from '../endpoints/products/resolvers';
 import { usersQuery, usersMutation, usersType } from "../endpoints/users/schemas";
 import { UsersResolvers } from "../endpoints/users/resolvers";
-
+import { ordersMutation, ordersQuery, ordersTypes } from "../endpoints/orders/schemas";
+import { ordersResolvers } from "../endpoints/orders/resolvers";
+import { bannersMutation, bannersQuery, bannersTypes } from "../endpoints/banners/schemas";
 
 export const typeDefs = gql`
 
@@ -15,12 +17,17 @@ export const typeDefs = gql`
   ${productsTypes}
   ${categoryTypes}
   ${usersType}
+  ${ordersTypes}
+  ${bannersTypes}
   
   type Query {
     ${cartQuery}
     ${productsQuery}
     ${categoryQuery}
     ${usersQuery}
+    ${ordersQuery}
+    ${bannersQuery}
+
   }
 
   type Mutation {
@@ -28,6 +35,8 @@ export const typeDefs = gql`
     ${productsMutation}
     ${categoryMutation}
     ${usersMutation}
+    ${ordersMutation}
+    ${bannersMutation}
   }
 `;
 
@@ -36,12 +45,14 @@ export const resolvers = {
     ...cartResolvers.Query,
     ...productResolvers.Query,
     ...categoryResolvers.Query,
-    ...UsersResolvers.Query
+    ...UsersResolvers.Query,
+    ...ordersResolvers.Query,
   },
   Mutation: {
     ...cartResolvers.Mutation,
     ...productResolvers.Mutation,
     ...categoryResolvers.Mutation,
-    ...UsersResolvers.Mutation
+    ...UsersResolvers.Mutation,
+    ...ordersResolvers.Mutation,
   },
 };
