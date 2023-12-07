@@ -17,13 +17,16 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  introspection: true, 
 });
 
 server.start().then(() => {
   app.use(
     "/",
     express.json(),
-    cors({}),
+    cors({
+      origin: "https://gql-server-bxu5.onrender.com"
+    }),
     morgan("dev"),
     expressMiddleware(server)
   );
