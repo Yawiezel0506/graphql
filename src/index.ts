@@ -11,8 +11,10 @@ import { typeDefs } from "./graphql/queries";
 import { resolvers } from "./graphql/queries";
 import dotenv from "dotenv"
 
+
 const app = express();
 const httpServer = http.createServer(app);
+
 
 dotenv.config()
 
@@ -29,6 +31,7 @@ server.start().then(() => {
     cors({}),
     morgan("dev"),
     expressMiddleware(server)
+
   );
 });
 
