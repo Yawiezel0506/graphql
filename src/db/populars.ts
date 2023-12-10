@@ -1,12 +1,12 @@
 import mongoose, {Schema, Model} from "mongoose";
 
 interface PopularProduct {
-    id: string
+    product_id: string
     quantity: number
 }
 
 const PopularSchema: Schema<PopularProduct> = new Schema<PopularProduct>({
-    id: {
+    product_id: {
         type: String,
         require: true
     },

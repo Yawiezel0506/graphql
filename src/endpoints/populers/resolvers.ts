@@ -7,9 +7,8 @@ export const populerResolvers = {
 
         const populars = await getAllPopular()
         if (typeof populars === "string") {
-          throw new Error("cart of this user not found");
+          throw new Error("populars not found");
         }
-        console.log(populars);
         
         return populars
     }
