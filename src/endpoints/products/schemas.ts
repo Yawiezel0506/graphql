@@ -34,6 +34,7 @@ export const productsTypes = gql`
     attributes: [AttributesInput]
     clickCount: Float
     quantity: Int
+    image: String
   }
 `;
 
