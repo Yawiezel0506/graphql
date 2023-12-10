@@ -16,7 +16,6 @@ const productSchema: Schema<Product> = new Schema<Product>({
   attributes: { type: [attributeSchema], required: true },
   clickCount: { type: Number, required: true },
   quantity: { type: Number, required: true },
-  image: { type: String, required: true },
 });
 
 export const ProductModel: Model<Product> = mongoose.model<Product>(
