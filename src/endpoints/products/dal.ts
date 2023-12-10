@@ -33,8 +33,6 @@ const getAllProducts = async () => {
   try {
     const result = await ProductModel.find({});
     return result;
-    // const products = results.map((document) => document.toObject());
-    // return products;
   } catch (error) {
     throw error;
   }
@@ -55,7 +53,6 @@ const updateOrInsert = async (body: Product | Product[]) => {
   try {
     if (Array.isArray(body)) {
       for (const item of body) {
-        // const result = await ProductModel.findOneAndUpdate({ id: item.id }, {quantity: item.quantity}, {new: true});
         const result = await ProductModel.findOneAndUpdate(
           { id: item.id },
           { $inc: { quantity: item.quantity } },
@@ -72,7 +69,6 @@ const updateOrInsert = async (body: Product | Product[]) => {
         { $inc: { quantity: body.quantity } },
         { new: true }
       );
-      // const result = await ProductModel.findOneAndUpdate({ id: body.id }, {quantity: body.quantity}, {new: true});
       if (result === null) {
         const newProduct = new ProductModel(body);
         await newProduct.save();

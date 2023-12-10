@@ -6,6 +6,7 @@ export const productsTypes = gql`
     title: String
     price: Float 
     description: String
+    image: String
     category: String
     attributes: [Attributes]
     clickCount: Float

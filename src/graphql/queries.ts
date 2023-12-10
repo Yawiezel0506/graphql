@@ -5,17 +5,21 @@ import { cartResolvers } from "../endpoints/cart/resolvers";
 import { categoryResolvers } from "../endpoints/categories/resolvers";
 import { productsTypes, productsQuery, productsMutation } from '../endpoints/products/schemas';
 import { productResolvers } from '../endpoints/products/resolvers';
+import { popularTypes, popularQuery } from "../endpoints/populers/schemas";
+import { populerResolvers } from "../endpoints/populers/resolvers";
 
 export const typeDefs = gql`
 
   ${cartTypes}
   ${productsTypes}
   ${categoryTypes}
+  ${popularTypes}
   
   type Query {
     ${cartQuery}
     ${productsQuery}
     ${categoryQuery}
+    ${popularQuery}
   }
 
   type Mutation {
@@ -28,8 +32,9 @@ export const typeDefs = gql`
 export const resolvers = {
   Query: {
     ...cartResolvers.Query,
-    ...productResolvers.Query,,
+    ...productResolvers.Query,
     ...categoryResolvers.Query,
+    ...populerResolvers.Query
   },
   Mutation: {
     ...cartResolvers.Mutation,
