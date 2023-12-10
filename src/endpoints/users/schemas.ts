@@ -6,6 +6,7 @@ export const usersType = `#graphql
         email: String!
         password: String!
         signup_time: String!
+        _id: String
     }
 
     input UserRegisterInput {
