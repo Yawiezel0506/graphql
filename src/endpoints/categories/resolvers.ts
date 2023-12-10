@@ -9,7 +9,7 @@ export const categoryResolvers = {
       const categories = await categoriesService.getAllCategories();
       if (!categories) {
         return "no categories found!";
-      }
+      }     
       return categories;
     },
   },

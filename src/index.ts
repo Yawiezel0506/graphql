@@ -9,9 +9,12 @@ import http from "http";
 import { connectToDatabase } from "./utils/mongoose";
 import { typeDefs } from "./graphql/queries";
 import { resolvers } from "./graphql/queries";
+import dotenv from "dotenv"
 
 const app = express();
 const httpServer = http.createServer(app);
+
+dotenv.config()
 
 const server = new ApolloServer({
   typeDefs,
@@ -29,7 +32,9 @@ server.start().then(() => {
   );
 });
 
-httpServer.listen({ port: 4500 }, async () => {
+const PORT = process.env.PORT || 4500
+
+httpServer.listen({ port: PORT }, async () => {
   await connectToDatabase();
   console.log(`🚀 Server ready at http://localhost:4500/graphql`);
 });

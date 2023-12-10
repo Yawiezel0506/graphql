@@ -38,7 +38,7 @@ export const cartTypes = gql`
 `;
 
 export const cartQuery = `#graphql
-    cart(id: ID!): Cart!
+    cart(id: String!): Cart!
     carts: [Cart]!
 `;
 
