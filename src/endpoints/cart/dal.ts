@@ -62,7 +62,16 @@ const addProduct = async (addToCart: AddToCart): CollectionResult => {
             await cart.save();
             console.log('Created a new cart for user:', addToCart.userId);
         } else {
-            cart.products = [...cart.products, ...addToCart.products];
+            // cart.products = [...cart.products, ...addToCart.products];
+            addToCart.products.forEach((newItem) => {
+              const existingProduct = cart &&  cart.products.find((itemInServer) => itemInServer.productId === newItem.productId);
+            
+              if (existingProduct) {
+                existingProduct.quantity += newItem.quantity;
+              } else {
+                cart && cart.products.push({ ...newItem });
+              }
+            });
             await cart.save();
             console.log('Products added successfully to the cart:', addToCart.products);
         }
