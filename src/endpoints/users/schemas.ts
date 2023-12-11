@@ -5,7 +5,7 @@ export const usersType = `#graphql
         username: String!
         email: String!
         password: String!
-        signup_time: String!
+        signup_time: String
         _id: String
     }
 
