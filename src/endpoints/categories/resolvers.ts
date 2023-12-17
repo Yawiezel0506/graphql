@@ -1,15 +1,17 @@
 import { Category } from "../../interfaces/category";
+import { addToRedis, existsInRedis } from "../../utils/redis";
 import categoriesService from "./services";
 
 export const categoryResolvers = {
   Query: {
     getCategories: async () => {
-      console.log("hey");
-      
+      const redisData = await existsInRedis("categories");
+      if (redisData != null) return redisData;
       const categories = await categoriesService.getAllCategories();
       if (!categories) {
         return "no categories found!";
-      }     
+      }   
+      await addToRedis("categories", categories)  
       return categories;
     },
   },

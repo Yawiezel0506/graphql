@@ -3,15 +3,19 @@ import {
   UserRegister,
   UserRegisterInput,
 } from "../../interfaces/users";
+import { addToRedis, existsInRedis } from "../../utils/redis";
 import usersServices from "./services";
 
 export const UsersResolvers = {
   Query: {
     getAllUsers: async () => {
+      const redisData = await existsInRedis("users");
+      if (redisData != null) return redisData;
       const users = await usersServices.getAllUsers();
       if (!users) {
         throw new Error("Something went wrong!");
       }
+      await addToRedis("users", users);
       return users;
     },
   },
@@ -25,15 +29,15 @@ export const UsersResolvers = {
       }
       return login;
     },
-    
+
     register: async (_: any, args: { user: UserRegisterInput }) => {
       const register = await usersServices.register(args.user);
       console.log(register);
-      
-      if (typeof register === 'string' || !register) {
+
+      if (typeof register === "string" || !register) {
         throw new Error("Something went wrong!");
       }
-    return register
+      return register;
     },
 
     edit: async (
